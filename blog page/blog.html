@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        nav {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0 1em;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1em;
+        }
+
+        .blog-post {
+            background-color: #fff;
+            margin-bottom: 1em;
+            padding: 1em;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .nav {
+  height: 50px;
+  width: 100%;
+  background-color: #F6F4EB;
+  position: relative;
+  z-index: 1000;
+}
+
+
+.nav > .nav-header {
+  display: inline;
+}
+
+.nav > .nav-header > .nav-title {
+  display: inline-block;
+  font-size: 22px;
+  color: #1E3163;
+  padding: 11px 10px 10px 17px;
+}
+
+.nav > .nav-btn {
+  display: none;
+
+}
+
+.nav > .nav-links {
+  display: inline;
+  float: right;
+  font-size: 18px;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 30px 13px 31px;
+  text-decoration: none;
+  color: #efefef;
+}
+
+.nav > .nav-links > a:hover {
+  background-color: #3f5efb;
+}
+
+.nav > #nav-check {
+  display: none;
+}
+
+@media (max-width:600px) {
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #030303;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+  }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+}
+.blink {
+  color: #fffcfc;
+  background: #3f5efb;
+  /* border:1px #ffffff; */
+  animation: blink-animation 0.1s steps(5, start) infinite !important;
+  -webkit-animation: blink-animation 0.1s steps(5, start) infinite !important;
+  
+}
+.logo{
+  width: 100%;
+  height: 45px;
+}
+
+.three-d {
+  -webkit-perspective: 200px;
+  -moz-perspective: 200px;
+  -ms-perspective: 200px;
+  -o-perspective: 200px;
+  perspective: 200px;
+  -webkit-transition: all .07s linear;
+  -moz-transition: all .07s linear;
+  -ms-transition: all .07s linear;
+  -o-transition: all .07s linear;
+  transition: all .07s linear;
+  position: relative;
+}
+
+.three-d:not(.active):hover {
+  cursor: pointer;
+}
+
+.three-d:not(.active):hover .three-d-box, 
+.three-d:not(.active):focus .three-d-box {
+  -wekbit-transform: translateZ(-25px) rotateX(90deg);
+  -moz-transform: translateZ(-25px) rotateX(90deg);
+  -o-transform: translateZ(-25px) rotateX(90deg);
+  -ms-transform: translateZ(-25px) rotateX(90deg);
+  transform: translateZ(-25px) rotateX(90deg);
+}
+
+.three-d-box {
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -ms-transition: all .3s ease-out;
+  -o-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+  -webkit-transform: translatez(-25px);
+  -moz-transform: translatez(-25px);
+  -ms-transform: translatez(-25px);
+  -o-transform: translatez(-25px);
+  transform: translatez(-25px);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-pointer-events: none;
+  -moz-pointer-events: none;
+  -ms-pointer-events: none;
+  -o-pointer-events: none;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.front {
+  -webkit-transform: rotatex(0deg) translatez(25px);
+  -moz-transform: rotatex(0deg) translatez(25px);
+  -ms-transform: rotatex(0deg) translatez(25px);
+  -o-transform: rotatex(0deg) translatez(25px);
+  transform: rotatex(0deg) translatez(25px);
+}
+
+.back {
+  -webkit-transform: rotatex(-90deg) translatez(25px);
+  -moz-transform: rotatex(-90deg) translatez(25px);
+  -ms-transform: rotatex(-90deg) translatez(25px);
+  -o-transform: rotatex(-90deg) translatez(25px);
+  transform: rotatex(-90deg) translatez(25px);
+  color: #FFE7C4;
+}
+
+.front, .back {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: black;
+  padding: 15px 30px 15px 31px; 
+  color: white;
+  -webkit-pointer-events: none;
+  -moz-pointer-events: none;
+  -ms-pointer-events: none;
+  -o-pointer-events: none;
+  pointer-events: none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.nav  .active .front,
+.nav  .active .back,
+.nav  a:hover .front,
+.nav a:hover .back {
+background-color: #1E3163;
+-webkit-background-size: 5px 5px;
+background-size: 5px 5px;
+background-position: 0 0, 30px 30px;
+background-image: -webit-linear-gradient(45deg, #0000  25%,  transparent 25%, transparent 75%, #1E3163 95%, #1E3163), linear-gradient(45deg, #1E3163 5%, transparent 25%, transparent 75%, #1E3163 75%, #1E3163);
+background-image: -moz-linear-gradient(45deg, #1E3163 25%, transparent 25%, transparent 75%, #1E3163 95%, #1E3163), linear-gradient(45deg, #1E3163 5%, transparent 25%, transparent 75%, #1E3163 75%, #1E3163);
+background-image: -ms-linear-gradient(45deg, #1E3163 25%, transparent 25%, transparent 75%, #1E3163 95%, #1E3163), linear-gradient(45deg, #1E3163 5%, transparent 25%, transparent 75%, #1E3163 75%, #1E3163);
+background-image: -o-linear-gradient(45deg, #1E3163 25%, transparent 25%, transparent 75%, #1E3163 95%, #1E3163), linear-gradient(45deg, #1E3163 5%, transparent 25%, transparent 75%, #1E3163 75%, #1E3163);
+background-image: linear-gradient(45deg, #1E3163 25%, transparent 25%, transparent 75%, #1E3163 95%, #1E3163), linear-gradient(45deg, #1E3163 5%, transparent 25%, transparent 75%, #1E3163 75%, #1E3163);
+}
+.blog-post {
+            background-color: #fff;
+            margin-bottom: 1em;
+            padding: 1em;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-post h2 {
+            color: #3498db;
+        }
+
+        .blog-post p {
+            color: #555;
+        }
+
+        .blog-post a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .blog-post a:hover {
+            text-decoration: underline;
+        }
+
+        /* Add styles for more responsiveness */
+        @media (max-width: 800px) {
+            .container {
+                padding: 0.5em;
+            }
+
+            .blog-post {
+                padding: 0.5em;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+            
+            <div class="nav-title">
+                <img src="/images/logo1.png" width="150" height="30" class="left-image"> </img>
+               
+              </div>
+        </div>
+        
+        <div class="nav-btn">
+          <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+        
+        <div class="nav-links">
+          <a href="index.html" class="three-d ">
+                Home
+                <span class="three-d-box active"><span class="front blink">Home</span><span class="back">Home</span></span>
+              </a>
+              <a href="/chatbot/first-aid-chatbot/index.html" class="three-d ">
+                Chatbot
+                <span class="three-d-box"><span class="front">Chatbot</span><span class="back">Chatbot</span></span>
+              </a>
+              <a href="/blog page/blog.html" class="three-d ">
+                Blog
+                <span class="three-d-box"><span class="front">Blog</span><span class="back">Blog</span></span>
+              </a>
+               <a href="/login page/login.html" class="three-d ">
+                Log In
+                <span class="three-d-box"><span class="front">Log In</span><span class="back">Log In</span></span>
+              </a>
+          
+        </div>
+      </div>
+    <header>
+        <h1>Medical Blog</h1>
+    </header>
+
+   
+
+    <div class="container">
+        <div class="blog-post">
+            <h2>Understanding the Importance of Regular Health Check-ups</h2>
+            <p>Regular health check-ups are crucial for maintaining overall well-being. In this article, we explore the
+                importance of scheduling and attending routine check-ups with your healthcare provider.</p>
+            <a href="#">Read more...</a>
+        </div>
+
+        <div class="blog-post">
+            <h2>The Benefits of a Balanced Diet for a Healthy Life</h2>
+            <p>Eating a balanced diet is essential for maintaining good health. Learn about the various benefits of
+                incorporating a diverse range of nutrients into your daily meals.</p>
+            <a href="#">Read more...</a>
+        </div>
+
+        <!-- Add more blog posts -->
+        <div class="blog-post">
+            <h2>Importance of Exercise in Daily Routine</h2>
+            <p>Discover the significance of regular exercise and how it contributes to your overall well-being.</p>
+            <a href="#">Read more...</a>
+        </div>
+
+        <div class="blog-post">
+            <h2>Stress Management Techniques for a Healthier Life</h2>
+            <p>Explore effective ways to manage stress and improve your mental and physical health.</p>
+            <a href="#">Read more...</a>
+        </div>
+    </div>
+    
+
+    <footer>
+        <p>&copy; 2024 Medical Blog. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
